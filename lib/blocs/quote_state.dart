@@ -9,7 +9,7 @@ const QuoteState();
   List<Object?> get props => throw UnimplementedError();
 }
 
-class InitialQuote extends QuoteState{}
+class QuoteInitial extends QuoteState{}
 
 class QuoteLoading extends QuoteState{}
 
