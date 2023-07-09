@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wisdomday/blocs/quote_bloc.dart';
 import 'package:wisdomday/blocs/quote_event.dart';
@@ -52,19 +53,28 @@ class _WisdomPageState extends State<WisdomPage> {
 
   Widget _buildLoading() => const Center(child: CircularProgressIndicator());
 
-  Widget _buildQuote(_quoteModel) {
+  Widget _buildQuote(quoteModel) {
     return Center(
       child: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text('${_quoteModel.content}'),
-            SizedBox(
-              height: 20,
+        child: Animate(
+          effects: const [FadeEffect()],
+          child: Card(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text('${quoteModel.content}', style: const TextStyle(fontSize: 20),),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Text('- ${quoteModel.author}'),
+                ],
+              ),
             ),
-            Text('${_quoteModel.author}'),
-          ],
+          ),
         ),
       ),
     );
